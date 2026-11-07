@@ -34,5 +34,34 @@ $cennik = [
 <section class="section"><div class="container"><div class="section-heading"><p class="eyebrow">DLACZEGO SZPRYCHA</p><h2>Dbamy o każdy detal.</h2></div><div class="feature-grid"><article class="feature"><div class="feature-icon" aria-hidden="true">🛠️</div><h3>Rzetelna diagnoza</h3><p>Najpierw sprawdzamy, co naprawdę wymaga naprawy.</p></article><article class="feature"><div class="feature-icon" aria-hidden="true">💬</div><h3>Jasna komunikacja</h3><p>Wyjaśniamy zakres prac i orientacyjne koszty.</p></article><article class="feature"><div class="feature-icon" aria-hidden="true">🚴</div><h3>Radość z jazdy</h3><p>Chcemy, żeby Twój rower był gotowy na kolejne kilometry.</p></article></div></div></section>
 <section class="cta-band"><div class="container cta-inner"><div><p class="eyebrow">CZAS NA SERWIS?</p><h2>Wracaj na trasę.</h2></div><a class="btn" href="kontakt.html">Skontaktuj się ↗</a></div></section>
 </main>
-<footer id="kontakt" class="site-footer"><div class="container"><div class="footer-grid"><div><a class="logo" href="index.html">szprycha<span class="logo-mark">.</span></a><p>Fikcyjna pracownia rowerowa w Bydgoszczy.<br>Mały serwis, wielka pasja do dwóch kółek.</p></div><div><h3>Na skróty</h3><p><a href="uslugi.html">Usługi</a></p><p><a href="#cennik">Cennik</a></p><p><a href="o-nas.html">O nas</a></p></div><div><h3>Kontakt</h3><address class="footer-address"><p>ul. Rowerowa 12, 85-001 Bydgoszcz</p><p><a href="tel:+48500100200">500 100 200</a></p><p><a href="mailto:kontakt@szprycha.pl">kontakt@szprycha.pl</a></p></address></div></div><div class="footer-bottom">&copy; <?= $rok ?> <?= htmlspecialchars($firma) ?>. Projekt edukacyjny — firma i dane kontaktowe są fikcyjne.</div></div></footer>
+<footer id="kontakt" class="site-footer"><div class="container"><div class="footer-grid"><div>
+<a class="logo" href="index.html">
+  <svg
+    viewBox="0 0 120 64"
+    width="72"
+    height="38"
+    role="img"
+    aria-labelledby="logo-tytul"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title id="logo-tytul">Rower — logo Szprycha</title>
+
+    <circle cx="28" cy="43" r="18"
+      fill="none" stroke="#b7f34c" stroke-width="4" />
+
+    <circle cx="92" cy="43" r="18"
+      fill="none" stroke="#b7f34c" stroke-width="4" />
+
+    <path
+      d="M28 43 L47 15 L63 43 L28 43
+         M47 15 L79 15 L92 43 L63 43 L79 15"
+      fill="none"
+      stroke="#b7f34c"
+      stroke-width="3.5"
+      stroke-linejoin="round"
+    />
+  </svg>
+  <span>szprycha<span class="logo-mark">.</span></span>
+</a>
+<p>Fikcyjna pracownia rowerowa w Bydgoszczy.<br>Mały serwis, wielka pasja do dwóch kółek.</p></div><div><h3>Na skróty</h3><p><a href="uslugi.html">Usługi</a></p><p><a href="#cennik">Cennik</a></p><p><a href="o-nas.html">O nas</a></p></div><div><h3>Kontakt</h3><address class="footer-address"><p>ul. Rowerowa 12, 85-001 Bydgoszcz</p><p><a href="tel:+48500100200">500 100 200</a></p><p><a href="mailto:kontakt@szprycha.pl">kontakt@szprycha.pl</a></p></address></div></div><div class="footer-bottom">&copy; <?= $rok ?> <?= htmlspecialchars($firma) ?>. Projekt edukacyjny — firma i dane kontaktowe są fikcyjne.</div></div></footer>
 </body></html>

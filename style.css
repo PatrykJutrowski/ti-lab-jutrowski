@@ -46,3 +46,12 @@
   html { scroll-behavior: auto; }
   .card { transition: none; }
 }
+.site-header .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-header .logo svg {
+  flex-shrink: 0;
+}
