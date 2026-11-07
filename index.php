@@ -1,6 +1,13 @@
 <?php
 $firma = 'Szprycha';
 $rok = date('Y');
+$cennik = [
+    ['nazwa' => 'Przegląd roweru', 'cena' => 120],
+    ['nazwa' => 'Regulacja przerzutek', 'cena' => 60],
+    ['nazwa' => 'Wymiana dętki', 'cena' => 40],
+    ['nazwa' => 'Regulacja hamulców', 'cena' => 50],
+    ['nazwa' => 'Czyszczenie napędu', 'cena' => 80]
+];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -18,7 +25,12 @@ $rok = date('Y');
 <section class="hero"><div class="container hero-grid"><div><p class="eyebrow">BYDGOSZCZ · SERWIS ROWEROWY</p><h1>Twój rower.<br>Nasza <strong>pasja.</strong></h1><p>Od drobnej regulacji po pełny przegląd. Przywracamy rowerom formę, żeby każda trasa była czystą przyjemnością.</p><div class="actions"><a class="btn btn-primary" href="kontakt.html">Umów wizytę ↗</a><a class="btn btn-outline" href="#uslugi">Poznaj usługi ↓</a></div></div><div class="hero-art" role="img" aria-label="Dekoracyjna ilustracja roweru"><span class="bike-icon" aria-hidden="true">🚲</span><span class="hero-stamp">DOBRA JAZDA ZACZYNA SIĘ TUTAJ</span></div></div></section>
 <div class="trust-strip"><div class="container trust-inner"><span>✓ Przejrzysty cennik</span><span>✓ Fachowa pomoc</span><span>✓ Serwis dla każdego roweru</span></div></div>
 <section id="uslugi" class="section"><div class="container"><div class="section-heading"><p class="eyebrow">CO ROBIMY</p><h2>Serwis, na którym możesz polegać.</h2><p>Trzy najpopularniejsze usługi. Więcej możliwości znajdziesz na podstronie usług.</p></div><div class="cards"><article class="card"><div class="card__icon" aria-hidden="true">🔧</div><h3>Przegląd roweru</h3><p>Kontrola hamulców, przerzutek i ogólnego stanu technicznego.</p><p class="card__price">od 120 zł</p></article><article class="card card--highlight"><p class="card__badge">★ Najczęściej wybierane</p><div class="card__icon" aria-hidden="true">⚙️</div><h3>Regulacja przerzutek</h3><p>Precyzyjne ustawienie napędu i płynna zmiana biegów.</p><p class="card__price">od 60 zł</p></article><article class="card"><div class="card__icon" aria-hidden="true">🛞</div><h3>Wymiana dętki</h3><p>Wymiana przebitej dętki i sprawdzenie stanu opony.</p><p class="card__price">od 40 zł</p></article></div><div class="actions"><a class="btn btn-primary" href="uslugi.html">Wszystkie usługi ↗</a></div></div></section>
-<section id="cennik" class="section dark-section"><div class="container"><div class="section-heading"><p class="eyebrow">BEZ NIESPODZIANEK</p><h2>Prosty cennik.</h2><p class="lead">Wiesz, za co płacisz. Ostateczną cenę potwierdzamy po ocenie roweru.</p></div><div class="price-panel"><table><thead><tr><th scope="col">Usługa</th><th scope="col" class="num">Cena od</th></tr></thead><tbody><tr><td>Przegląd roweru</td><td class="num">120 zł</td></tr><tr><td>Regulacja przerzutek</td><td class="num">60 zł</td></tr><tr><td>Wymiana dętki</td><td class="num">40 zł</td></tr><tr><td>Regulacja hamulców</td><td class="num">50 zł</td></tr><tr><td>Czyszczenie napędu</td><td class="num">80 zł</td></tr></tbody></table></div></div></section>
+<section id="cennik" class="section dark-section"><div class="container"><div class="section-heading"><p class="eyebrow">BEZ NIESPODZIANEK</p><h2>Prosty cennik.</h2><p class="lead">Wiesz, za co płacisz. Ostateczną cenę potwierdzamy po ocenie roweru.</p></div><div class="price-panel"><table><thead><tr><th scope="col">Usługa</th><th scope="col" class="num">Cena od</th></tr></thead><tbody><?php foreach ($cennik as $usluga): ?>
+        <tr>
+            <td><?= htmlspecialchars($usluga['nazwa']) ?></td>
+            <td class="num"><?= $usluga['cena'] ?> zł</td>
+        </tr>
+    <?php endforeach; ?></tbody></table></div></div></section>
 <section class="section"><div class="container"><div class="section-heading"><p class="eyebrow">DLACZEGO SZPRYCHA</p><h2>Dbamy o każdy detal.</h2></div><div class="feature-grid"><article class="feature"><div class="feature-icon" aria-hidden="true">🛠️</div><h3>Rzetelna diagnoza</h3><p>Najpierw sprawdzamy, co naprawdę wymaga naprawy.</p></article><article class="feature"><div class="feature-icon" aria-hidden="true">💬</div><h3>Jasna komunikacja</h3><p>Wyjaśniamy zakres prac i orientacyjne koszty.</p></article><article class="feature"><div class="feature-icon" aria-hidden="true">🚴</div><h3>Radość z jazdy</h3><p>Chcemy, żeby Twój rower był gotowy na kolejne kilometry.</p></article></div></div></section>
 <section class="cta-band"><div class="container cta-inner"><div><p class="eyebrow">CZAS NA SERWIS?</p><h2>Wracaj na trasę.</h2></div><a class="btn" href="kontakt.html">Skontaktuj się ↗</a></div></section>
 </main>
