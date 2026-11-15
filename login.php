@@ -33,30 +33,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logowanie | Szprycha</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"
+    >
 </head>
-<body>
-    <h1>Logowanie administratora</h1>
+<body class="bg-light">
 
-    <?php if ($blad): ?>
-        <p style="color: red;">
-            <?= htmlspecialchars($blad) ?>
-        </p>
-    <?php endif; ?>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h1 class="h3 mb-4">Logowanie — Szprycha</h1>
 
-    <form method="post">
-        <p>
-            <label for="login">Login:</label>
-            <input type="text" id="login" name="login" required>
-        </p>
+                    <?php if ($blad): ?>
+                        <div class="alert alert-danger">
+                            <?= htmlspecialchars($blad) ?>
+                        </div>
+                    <?php endif; ?>
 
-        <p>
-            <label for="haslo">Hasło:</label>
-            <input type="password" id="haslo" name="haslo" required>
-        </p>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="login" class="form-label">Login</label>
+                            <input type="text" id="login" name="login"
+                                   class="form-control" required>
+                        </div>
 
-        <button type="submit">Zaloguj się</button>
-    </form>
+                        <div class="mb-3">
+                            <label for="haslo" class="form-label">Hasło</label>
+                            <input type="password" id="haslo" name="haslo"
+                                   class="form-control" required>
+                        </div>
 
-    <p><a href="index.php">Powrót na stronę główną</a></p>
+                        <button type="submit" class="btn btn-primary w-100">
+                            Zaloguj się
+                        </button>
+                    </form>
+
+                    <p class="mt-3 mb-0">
+                        <a href="index.php">Powrót na stronę główną</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

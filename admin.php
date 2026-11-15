@@ -5,19 +5,16 @@ require __DIR__ . '/baza.php';
 
 $blad = '';
 
-// Obsługa dodawania usługi
+// Obsługa formularzy
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $akcja = $_POST['akcja'] ?? '';
 
     if ($akcja === 'dodaj') {
         $nazwa = trim($_POST['nazwa'] ?? '');
-        $cena = filter_var(
-            $_POST['cena'] ?? null,
-            FILTER_VALIDATE_INT
-        );
+        $cena = filter_var($_POST['cena'] ?? null, FILTER_VALIDATE_INT);
 
         if ($nazwa === '' || mb_strlen($nazwa) > 100 || $cena === false || $cena < 1) {
-            $blad = 'Podaj poprawną nazwę (maks. 100 znaków) i cenę większą od zera.';
+            $blad = 'Podaj poprawną nazwę i cenę większą od zera.';
         } else {
             $z = $pdo->prepare(
                 'INSERT INTO uslugi (nazwa, cena) VALUES (:nazwa, :cena)'
@@ -32,9 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
     }
+
+    if ($akcja === 'usun') {
+        $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT);
+
+        if ($id !== false && $id > 0) {
+            $z = $pdo->prepare('DELETE FROM uslugi WHERE id = :id');
+            $z->execute(['id' => $id]);
+
+            header('Location: admin.php?ok=usunieto');
+            exit;
+        }
+
+        $blad = 'Nieprawidłowy identyfikator usługi.';
+    }
 }
 
-// Pobranie usług z bazy
 $uslugi = $pdo->query(
     'SELECT id, nazwa, cena FROM uslugi ORDER BY id'
 )->fetchAll();
@@ -45,77 +55,118 @@ $uslugi = $pdo->query(
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel CMS | Szprycha</title>
-</head>
-<body>
-    <h1>Panel administratora — Szprycha</h1>
 
-    <p>
-        Witaj, <?= htmlspecialchars($_SESSION['uzytkownik']) ?>!
-        <a href="wyloguj.php">Wyloguj się</a>
-    </p>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"
+    >
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1>Panel CMS — Szprycha</h1>
+            <p class="text-muted mb-0">
+                Witaj, <?= htmlspecialchars($_SESSION['uzytkownik']) ?>!
+            </p>
+        </div>
+
+        <a href="wyloguj.php" class="btn btn-outline-secondary">
+            Wyloguj się
+        </a>
+    </div>
 
     <?php if (($_GET['ok'] ?? '') === 'dodano'): ?>
-        <p style="color: green;">Usługa została dodana.</p>
+        <div class="alert alert-success">Usługa została dodana.</div>
+    <?php elseif (($_GET['ok'] ?? '') === 'usunieto'): ?>
+        <div class="alert alert-success">Usługa została usunięta.</div>
     <?php endif; ?>
 
     <?php if ($blad): ?>
-        <p style="color: red;">
+        <div class="alert alert-danger">
             <?= htmlspecialchars($blad) ?>
-        </p>
+        </div>
     <?php endif; ?>
 
-    <h2>Lista usług</h2>
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Lista usług</h2>
 
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Usługa</th>
-                <th>Cena</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($uslugi as $usluga): ?>
-                <tr>
-                    <td><?= (int) $usluga['id'] ?></td>
-                    <td><?= htmlspecialchars($usluga['nazwa']) ?></td>
-                    <td><?= (int) $usluga['cena'] ?> zł</td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+                    <div class="table-responsive">
+                        <table class="table table-striped align-middle">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Usługa</th>
+                                    <th>Cena</th>
+                                    <th>Akcja</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($uslugi as $usluga): ?>
+                                    <tr>
+                                        <td><?= (int) $usluga['id'] ?></td>
+                                        <td><?= htmlspecialchars($usluga['nazwa']) ?></td>
+                                        <td><?= (int) $usluga['cena'] ?> zł</td>
+                                        <td>
+                                            <form method="post"
+                                                  onsubmit="return confirm('Usunąć tę usługę?');">
+                                                <input type="hidden" name="akcja" value="usun">
+                                                <input type="hidden" name="id"
+                                                       value="<?= (int) $usluga['id'] ?>">
+                                                <button type="submit"
+                                                        class="btn btn-sm btn-outline-danger">
+                                                    Usuń
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h2>Dodaj nową usługę</h2>
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Dodaj usługę</h2>
 
-    <form method="post">
-        <input type="hidden" name="akcja" value="dodaj">
+                    <form method="post">
+                        <input type="hidden" name="akcja" value="dodaj">
 
-        <p>
-            <label for="nazwa">Nazwa usługi:</label>
-            <input
-                type="text"
-                id="nazwa"
-                name="nazwa"
-                maxlength="100"
-                required
-            >
-        </p>
+                        <div class="mb-3">
+                            <label for="nazwa" class="form-label">Nazwa usługi</label>
+                            <input type="text" id="nazwa" name="nazwa"
+                                   class="form-control" maxlength="100" required>
+                        </div>
 
-        <p>
-            <label for="cena">Cena (zł):</label>
-            <input
-                type="number"
-                id="cena"
-                name="cena"
-                min="1"
-                step="1"
-                required
-            >
-        </p>
+                        <div class="mb-3">
+                            <label for="cena" class="form-label">Cena (zł)</label>
+                            <input type="number" id="cena" name="cena"
+                                   class="form-control" min="1" step="1" required>
+                        </div>
 
-        <button type="submit">Dodaj usługę</button>
-    </form>
+                        <button type="submit" class="btn btn-primary">
+                            Dodaj usługę
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <p><a href="index.php">Zobacz stronę główną</a></p>
+    <p class="mt-4">
+        <a href="index.php">← Powrót na stronę główną</a>
+    </p>
+</div>
+
 </body>
 </html>
