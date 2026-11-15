@@ -40,14 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous"
     >
+    <link rel="stylesheet" href="admin-style.css">
 </head>
-<body class="bg-light">
+<body class="admin-page">
 
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm">
+            <div class="card shadow-sm login-card">
                 <div class="card-body p-4">
+                    <p class="login-logo mb-2">szprycha.</p>
                     <h1 class="h3 mb-4">Logowanie — Szprycha</h1>
 
                     <?php if ($blad): ?>

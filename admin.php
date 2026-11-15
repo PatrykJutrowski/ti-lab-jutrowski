@@ -62,8 +62,9 @@ $uslugi = $pdo->query(
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous"
     >
+    <link rel="stylesheet" href="admin-style.css">
 </head>
-<body class="bg-light">
+<body class="admin-page">
 
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">

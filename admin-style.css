@@ -1,0 +1,148 @@
+
+/* Szprycha — panel administratora */
+
+:root {
+    --sz-dark: #10251e;
+    --sz-panel: #19392e;
+    --sz-lime: #b7f34c;
+    --sz-text: #f4f7f1;
+}
+
+body.admin-page {
+    background: var(--sz-dark);
+    color: var(--sz-text);
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Nagłówki */
+.admin-page h1,
+.admin-page h2 {
+    color: var(--sz-text);
+    font-weight: 700;
+}
+
+.admin-page h1 {
+    letter-spacing: -1px;
+}
+
+.admin-page .text-muted {
+    color: #b9c9c0 !important;
+}
+
+/* Karty */
+.admin-page .card {
+    background: var(--sz-panel);
+    color: var(--sz-text);
+    border: 1px solid #355447;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.admin-page .card-body {
+    padding: 24px;
+}
+
+/* Tabela */
+.admin-page .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--sz-text);
+    --bs-table-striped-bg: #244638;
+    --bs-table-striped-color: var(--sz-text);
+    --bs-table-border-color: #426052;
+}
+
+.admin-page .table th {
+    color: var(--sz-lime);
+    font-weight: 600;
+}
+
+/* Formularze */
+.admin-page .form-label {
+    font-weight: 600;
+}
+
+.admin-page .form-control {
+    background: #f4f7f1;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 11px 14px;
+}
+
+.admin-page .form-control:focus {
+    border-color: var(--sz-lime);
+    box-shadow: 0 0 0 3px rgba(183, 243, 76, 0.2);
+}
+
+/* Przyciski */
+.admin-page .btn-primary {
+    background: var(--sz-lime);
+    color: var(--sz-dark);
+    border: 2px solid var(--sz-lime);
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.admin-page .btn-primary:hover {
+    background: #d0ff7a;
+    color: var(--sz-dark);
+    border-color: #d0ff7a;
+}
+
+.admin-page .btn-outline-secondary {
+    color: var(--sz-text);
+    border-color: #8ba99a;
+    border-radius: 10px;
+}
+
+.admin-page .btn-outline-secondary:hover {
+    background: var(--sz-lime);
+    color: var(--sz-dark);
+    border-color: var(--sz-lime);
+}
+
+.admin-page .btn-outline-danger {
+    color: #ff8585;
+    border: 1px solid #ff8585;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.admin-page .btn-outline-danger:hover {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: #ffffff;
+}
+
+/* Linki */
+.admin-page a:not(.btn) {
+    color: var(--sz-lime);
+}
+
+.admin-page a:not(.btn):hover {
+    color: #d0ff7a;
+}
+
+/* Ekran logowania */
+.admin-page .login-card {
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.admin-page .login-logo {
+    color: var(--sz-lime);
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* Telefony */
+@media (max-width: 576px) {
+    .admin-page .card-body {
+        padding: 18px;
+    }
+
+    .admin-page h1 {
+        font-size: 1.6rem;
+    }
+}
